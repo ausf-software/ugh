@@ -1,1 +1,1 @@
-University group helper for discord server
+University group helper for discord ausf.software.server
