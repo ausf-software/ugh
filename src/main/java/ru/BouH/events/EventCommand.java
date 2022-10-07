@@ -1,4 +1,4 @@
-package ru.BouH.utils;
+package ru.BouH.events;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,5 +9,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface EventCommand {
     String command();
-    String args() default "";
+    String usage();
 }

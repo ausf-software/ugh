@@ -1,8 +1,5 @@
 package ru.BouH.init;
-
-import ru.BouH.events.CommandBase;
-import ru.BouH.utils.EventCommand;
-
+import ru.BouH.events.EventCommand;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,17 +11,17 @@ public class RegisterEvents {
     public void registerEventClass(String eventClass) {
         try {
             Class aClass = Class.forName(eventClass);
-            Object object = aClass.newInstance();
-            if (object instanceof CommandBase) {
-                Method[] methods = aClass.getDeclaredMethods();
-                for (Method method : methods) {
-                    if (method.isAnnotationPresent(EventCommand.class)) {
+            Method[] methods = aClass.getDeclaredMethods();
+            for (Method method : methods) {
+                if (method.isAnnotationPresent(EventCommand.class)) {
+                    if (method.getReturnType() == boolean.class) {
                         EventCommand eventCommand = method.getAnnotation(EventCommand.class);
+                        method.setAccessible(true);
                         this.methodMap.put(eventCommand.command(), method);
                     }
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
