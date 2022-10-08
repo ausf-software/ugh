@@ -32,7 +32,8 @@ public enum DayValue {
     THURSDAY    ((byte) 3),
     FRIDAY      ((byte) 4),
     SATURDAY    ((byte) 5),
-    SUNDAY      ((byte) 6);
+    SUNDAY      ((byte) 6),
+    ALL_DAYS    ((byte) -1);
 
     private byte index;
 
