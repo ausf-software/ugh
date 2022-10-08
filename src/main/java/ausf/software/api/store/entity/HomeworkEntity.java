@@ -16,9 +16,20 @@
 
 package ausf.software.api.store.entity;
 
+import ausf.software.api.store.HomeworkType;
 import jakarta.persistence.*;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Описывает элемент из таблицы, содержащей информацию о дз.
+ *
+ * @see TimetableElementEntity
+ * @see ausf.software.api.store.WeekType
+ * @see HomeworkType
+ * @author Shcherbina Daniil
+ * @since 1.0
+ * @version 1.0
+ */
 @Entity
 @Table(name = "homework")
 public class HomeworkEntity {
@@ -29,9 +40,10 @@ public class HomeworkEntity {
     @NotNull
     private int id;
 
-    @Column (name = "timetable_element_id")
     @NotNull
-    private int timetableElementId;
+    @ManyToOne
+    @JoinColumn (name="timetable_element_id")
+    private TimetableElementEntity timetableElement;
 
     @Column (name = "homework")
     @NotNull
@@ -41,10 +53,16 @@ public class HomeworkEntity {
     @NotNull
     private byte homeworkType;
 
-    public HomeworkEntity(@NotNull int timetableElementId, @NotNull String homework, @NotNull byte homeworkType) {
-        this.timetableElementId = timetableElementId;
+    @Column (name = "week_type")
+    @NotNull
+    private byte weekType;
+
+    public HomeworkEntity(@NotNull TimetableElementEntity timetableElement,
+                          @NotNull String homework, @NotNull byte homeworkType, @NotNull byte weekType) {
+        this.timetableElement = timetableElement;
         this.homework = homework;
         this.homeworkType = homeworkType;
+        this.weekType = weekType;
     }
 
     public HomeworkEntity() {
@@ -54,12 +72,12 @@ public class HomeworkEntity {
         return id;
     }
 
-    public int getTimetableElementId() {
-        return timetableElementId;
+    public TimetableElementEntity getTimetableElement() {
+        return timetableElement;
     }
 
-    public void setTimetableElementId(@NotNull int timetableElementId) {
-        this.timetableElementId = timetableElementId;
+    public void setTimetableElement(@NotNull TimetableElementEntity timetableElement) {
+        this.timetableElement = timetableElement;
     }
 
     public String getHomework() {
@@ -78,4 +96,11 @@ public class HomeworkEntity {
         this.homeworkType = homeworkType;
     }
 
+    public byte getWeekType() {
+        return weekType;
+    }
+
+    public void setWeekType(@NotNull byte weekType) {
+        this.weekType = weekType;
+    }
 }

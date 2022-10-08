@@ -26,23 +26,28 @@ package ausf.software.api.store;
  */
 public enum DayValue {
 
-    MONDAY      ((byte) 0),
-    TUESDAY     ((byte) 1),
-    WEDNESDAY   ((byte) 2),
-    THURSDAY    ((byte) 3),
-    FRIDAY      ((byte) 4),
-    SATURDAY    ((byte) 5),
-    SUNDAY      ((byte) 6),
-    ALL_DAYS    ((byte) -1);
+    MONDAY      ((byte) 0, "Понедельник"),
+    TUESDAY     ((byte) 1, "Вторник"),
+    WEDNESDAY   ((byte) 2, "Среда"),
+    THURSDAY    ((byte) 3, "Четверг"),
+    FRIDAY      ((byte) 4, "Пятница"),
+    SATURDAY    ((byte) 5, "Суббота"),
+    SUNDAY      ((byte) 6, "Воскресенье"),
+    ALL_DAYS    ((byte) -1, "");
 
     private byte index;
+    private String title;
 
-    DayValue(byte i) {
+    DayValue(byte i, String text) {
         index = i;
+        title = text;
     }
 
     public byte getValue() {
         return index;
     }
 
+    public String getTitle() {
+        return title;
+    }
 }

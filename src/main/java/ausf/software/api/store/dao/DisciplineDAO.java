@@ -22,6 +22,8 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Реализация DAO к таблице, содержащей информацию о дисциплинах.
  *
+ * @see DAO
+ * @see DisciplineEntity
  * @author Shcherbina Daniil
  * @since 1.0
  * @version 1.0

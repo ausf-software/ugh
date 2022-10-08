@@ -16,18 +16,32 @@
 
 package ausf.software.api.store.entity;
 
+import ausf.software.api.store.GameCategory;
 import jakarta.persistence.*;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Описывает элемент из таблицы, содержащей информацию о рекомендуемых
+ * одногрупниками играх.
+ *
+ * @see GameCategory
+ * @author Shcherbina Daniil
+ * @since 1.0
+ * @version 1.0
+ */
 @Entity
-@Table(name = "cinema_library")
-public class CinemaLibraryEntity {
+@Table(name = "game_library")
+public class GameLibraryElementEntity {
 
     @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     private int id;
+
+    @Column (name = "category")
+    @NotNull
+    private int category;
 
     @Column (name = "title")
     @NotNull
@@ -39,17 +53,26 @@ public class CinemaLibraryEntity {
     @Column (name = "recommended")
     private String recommendedBy;
 
-    public CinemaLibraryEntity(@NotNull String title, String description, String recommendedBy) {
+    public GameLibraryElementEntity(@NotNull int category, @NotNull String title, String description, String recommendedBy) {
+        this.category = category;
         this.title = title;
         this.description = description;
         this.recommendedBy = recommendedBy;
     }
 
-    public CinemaLibraryEntity() {
+    public GameLibraryElementEntity() {
     }
 
     public int getId() {
         return id;
+    }
+
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(@NotNull int category) {
+        this.category = category;
     }
 
     public String getTitle() {

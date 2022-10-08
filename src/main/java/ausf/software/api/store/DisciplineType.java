@@ -26,19 +26,25 @@ package ausf.software.api.store;
  */
 public enum DisciplineType {
 
-    LECTURE     ((byte) 0),
-    PRACTICE    ((byte) 1),
-    SEMINAR     ((byte) 2),
-    ADDITIONAL  ((byte) 3);
+    LECTURE     ((byte) 0, "Лекция"),
+    PRACTICE    ((byte) 1, "Практика"),
+    SEMINAR     ((byte) 2, "Семинар"),
+    ADDITIONAL  ((byte) 3, "Дополнительный");
 
     private byte index;
+    private String title;
 
-    DisciplineType(byte i) {
+    DisciplineType(byte i, String text) {
         index = i;
+        title = text;
     }
 
     public byte getValue() {
         return index;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
 }

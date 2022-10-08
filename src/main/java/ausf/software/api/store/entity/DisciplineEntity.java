@@ -19,6 +19,14 @@ package ausf.software.api.store.entity;
 import jakarta.persistence.*;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Описывает элемент из таблицы, содержащей информацию о изучаемых дисциплинах.
+ *
+ * @see ausf.software.api.store.DisciplineType
+ * @author Shcherbina Daniil
+ * @since 1.0
+ * @version 1.0
+ */
 @Entity
 @Table(name = "discipline")
 public class DisciplineEntity {

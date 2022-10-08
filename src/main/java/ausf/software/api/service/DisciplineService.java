@@ -24,6 +24,9 @@ import org.jetbrains.annotations.NotNull;
  * Сервис предоставдляющий интерфейс для взаимодействия с данными
  * в таблице, содержащей данные о дисциплинах.
  *
+ * @see Service
+ * @see DisciplineDAO
+ * @see DisciplineEntity
  * @author Shcherbina Daniil
  * @since 1.0
  * @version 1.0

@@ -25,16 +25,23 @@ package ausf.software.api.store;
  * @version 1.0
  */
 public enum WeekType {
-    NUMERATOR   ((byte) 0),    // числитель
-    DENOMINATOR ((byte) 1);    // знаменатель
+    NUMERATOR   ((byte) 0, "Числитель"),
+    DENOMINATOR ((byte) 1, "Знаменатель");
 
     private byte index;
+    private String title;
 
-    WeekType(byte i) {
+    WeekType(byte i, String text) {
         index = i;
+        title = text;
     }
 
     public byte getValue() {
         return index;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
 }

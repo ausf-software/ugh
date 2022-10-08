@@ -16,12 +16,22 @@
 
 package ausf.software.api.store.entity;
 
+import ausf.software.api.store.BookCategory;
 import jakarta.persistence.*;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Описывает элемент из таблицы, содержащей информацию о рекомендуемых
+ * одногрупниками книгах.
+ *
+ * @see BookCategory
+ * @author Shcherbina Daniil
+ * @since 1.0
+ * @version 1.0
+ */
 @Entity
-@Table(name = "game_library")
-public class GameLibraryEntity {
+@Table(name = "book_library")
+public class BookLibraryElementEntity {
 
     @Column(name = "id")
     @Id
@@ -33,6 +43,10 @@ public class GameLibraryEntity {
     @NotNull
     private int category;
 
+    @Column (name = "author")
+    @NotNull
+    private String author;
+
     @Column (name = "title")
     @NotNull
     private String title;
@@ -43,14 +57,15 @@ public class GameLibraryEntity {
     @Column (name = "recommended")
     private String recommendedBy;
 
-    public GameLibraryEntity(@NotNull int category, @NotNull String title, String description, String recommendedBy) {
+    public BookLibraryElementEntity(@NotNull int category, @NotNull String author, @NotNull String title, String description, String recommendedBy) {
         this.category = category;
+        this.author = author;
         this.title = title;
         this.description = description;
         this.recommendedBy = recommendedBy;
     }
 
-    public GameLibraryEntity() {
+    public BookLibraryElementEntity() {
     }
 
     public int getId() {
@@ -63,6 +78,14 @@ public class GameLibraryEntity {
 
     public void setCategory(@NotNull int category) {
         this.category = category;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(@NotNull String author) {
+        this.author = author;
     }
 
     public String getTitle() {
@@ -88,4 +111,5 @@ public class GameLibraryEntity {
     public void setRecommendedBy(String recommendedBy) {
         this.recommendedBy = recommendedBy;
     }
+
 }

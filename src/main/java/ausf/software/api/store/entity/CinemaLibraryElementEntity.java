@@ -16,12 +16,22 @@
 
 package ausf.software.api.store.entity;
 
+import ausf.software.api.store.CinemaCategory;
 import jakarta.persistence.*;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Описывает элемент из таблицы, содержащей информацию о рекомендуемых
+ * одногрупниками фильмах.
+ *
+ * @see CinemaCategory
+ * @author Shcherbina Daniil
+ * @since 1.0
+ * @version 1.0
+ */
 @Entity
-@Table(name = "book_library")
-public class BookLibraryEntity {
+@Table(name = "cinema_library")
+public class CinemaLibraryElementEntity {
 
     @Column(name = "id")
     @Id
@@ -29,17 +39,13 @@ public class BookLibraryEntity {
     @NotNull
     private int id;
 
-    @Column (name = "category")
-    @NotNull
-    private int category;
-
-    @Column (name = "author")
-    @NotNull
-    private String author;
-
     @Column (name = "title")
     @NotNull
     private String title;
+
+    @Column (name = "category")
+    @NotNull
+    private int category;
 
     @Column (name = "description")
     private String description;
@@ -47,35 +53,18 @@ public class BookLibraryEntity {
     @Column (name = "recommended")
     private String recommendedBy;
 
-    public BookLibraryEntity(@NotNull int category, @NotNull String author, @NotNull String title, String description, String recommendedBy) {
-        this.category = category;
-        this.author = author;
+    public CinemaLibraryElementEntity(@NotNull String title, @NotNull int category, String description, String recommendedBy) {
         this.title = title;
+        this.category = category;
         this.description = description;
         this.recommendedBy = recommendedBy;
     }
 
-    public BookLibraryEntity() {
+    public CinemaLibraryElementEntity() {
     }
 
     public int getId() {
         return id;
-    }
-
-    public int getCategory() {
-        return category;
-    }
-
-    public void setCategory(@NotNull int category) {
-        this.category = category;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(@NotNull String author) {
-        this.author = author;
     }
 
     public String getTitle() {
@@ -100,5 +89,13 @@ public class BookLibraryEntity {
 
     public void setRecommendedBy(String recommendedBy) {
         this.recommendedBy = recommendedBy;
+    }
+
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(@NotNull int category) {
+        this.category = category;
     }
 }

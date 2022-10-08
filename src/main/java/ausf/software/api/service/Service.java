@@ -25,14 +25,29 @@ package ausf.software.api.service;
  */
 public interface Service <T, K> {
 
+    /**
+     * Создает сессию для добавления записи о новом элементе.
+     */
     void add(T entity);
 
+    /**
+     * Создает сессию для обновдения в БД записи о элементе.
+     */
     void update(T entity);
 
+    /**
+     * Создает сессию для получения записи элемента из БД по его ID.
+     */
     T findById(K id);
 
+    /**
+     * Создает сессию для удаления записи элемента из БД.
+     */
     void deleteByEntity(T entity);
 
+    /**
+     * Создает сессию для удаления записи элемента из БД по его ID.
+     */
     void deleteByID(K id);
 
 }
