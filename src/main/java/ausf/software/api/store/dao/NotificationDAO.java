@@ -16,7 +16,7 @@
 
 package ausf.software.api.store.dao;
 
-import ausf.software.api.store.entity.GameLibraryElementEntity;
+import ausf.software.api.store.entity.NotificationEntity;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
@@ -25,48 +25,47 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 /**
- * Реализация DAO к таблице, содержащей информацию о рекомендуемых
- * одногрупниками играх.
+ * Реализация DAO к таблице, содержащей информацию о уведомлениях.
  *
  * @see DAO
- * @see GameLibraryElementEntity
+ * @see ausf.software.api.store.entity.NotificationEntity
  * @author Shcherbina Daniil
  * @since 1.0
  * @version 1.0
  */
-public class GameLibraryElementDAO extends DAO <GameLibraryElementEntity, Integer> {
+public class NotificationDAO extends DAO <NotificationEntity, Integer> {
 
     @Override
-    public void add(@NotNull GameLibraryElementEntity entity) {
+    public void add(@NotNull NotificationEntity entity) {
         currentSession.save(entity);
     }
 
     @Override
-    public void update(@NotNull GameLibraryElementEntity entity) {
+    public void update(@NotNull NotificationEntity entity) {
         currentSession.update(entity);
     }
 
     @Override
-    public GameLibraryElementEntity findById(@NotNull Integer id) {
-        return currentSession.get(GameLibraryElementEntity.class, id);
+    public NotificationEntity findById(@NotNull Integer id) {
+        return currentSession.get(NotificationEntity.class, id);
     }
 
     @Override
-    public void delete(@NotNull GameLibraryElementEntity entity) {
+    public void delete(@NotNull NotificationEntity entity) {
         currentSession.delete(entity);
     }
 
     /**
-     * Создает запрос к БД и возвращает список элементов по заданному значению категории игр.
+     * Создает запрос к БД и возвращает список элементов по заданному значению статуса уведомлений.
      *
-     * @param category категория игр по которой будет выборка.
+     * @param notificationStatus статус уведомления.
      * @return список элементов соответствующих заданному условию.
      */
-    public List<GameLibraryElementEntity> getGameLibraryElementByCategory(@NotNull byte category) {
+    public List<NotificationEntity> getNotificationByStatus(@NotNull byte notificationStatus) {
         CriteriaBuilder criteriaBuilder = currentSession.getCriteriaBuilder();
-        CriteriaQuery<GameLibraryElementEntity> criteria = criteriaBuilder.createQuery(GameLibraryElementEntity.class);
-        Root<GameLibraryElementEntity> root = criteria.from(GameLibraryElementEntity.class);
-        criteria.select(root).where(criteriaBuilder.equal(root.get("category"), category));
+        CriteriaQuery<NotificationEntity> criteria = criteriaBuilder.createQuery(NotificationEntity.class);
+        Root<NotificationEntity> root = criteria.from(NotificationEntity.class);
+        criteria.select(root).where(criteriaBuilder.equal(root.get("notification_status"), notificationStatus));
         return currentSession.createQuery(criteria).getResultList();
     }
 
