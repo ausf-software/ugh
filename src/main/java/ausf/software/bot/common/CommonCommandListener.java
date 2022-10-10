@@ -16,9 +16,17 @@
 
 package ausf.software.bot.common;
 
+import ausf.software.api.store.NotificationType;
 import ausf.software.bot.Config;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.events.interaction.component.SelectMenuInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.components.ActionRow;
+import net.dv8tion.jda.api.interactions.components.Modal;
+import net.dv8tion.jda.api.interactions.components.selections.SelectMenu;
+import net.dv8tion.jda.api.interactions.components.text.TextInput;
+import net.dv8tion.jda.api.interactions.components.text.TextInputStyle;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -42,7 +50,7 @@ public class CommonCommandListener extends ListenerAdapter {
     }
 
     private void checkCommand(@NotNull MessageReceivedEvent event, @NotNull String message){
-        String[] arg = message.split(":");
+        String[] arg = message.split(String.valueOf(Config.commandArgSplitter));
         if (arg[0].equals(Config.commandTrigger + "расписание")) {
             event.getChannel().sendMessage("ну допустим").submit();
         }
