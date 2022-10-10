@@ -34,7 +34,7 @@ public class ServerCommandListener extends ListenerAdapter {
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         if (!event.getAuthor().hasPrivateChannel()) {
-            System.out.println("server message");
+            //System.out.println("server message");
         }
     }
 

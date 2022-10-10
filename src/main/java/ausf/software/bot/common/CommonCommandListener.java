@@ -42,7 +42,7 @@ public class CommonCommandListener extends ListenerAdapter {
     }
 
     private void checkCommand(@NotNull MessageReceivedEvent event, @NotNull String message){
-        String[] arg = message.split(":");
+        String[] arg = message.split(String.valueOf(Config.commandArgSplitter));
         if (arg[0].equals(Config.commandTrigger + "расписание")) {
             event.getChannel().sendMessage("ну допустим").submit();
         }

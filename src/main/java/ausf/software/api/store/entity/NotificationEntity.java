@@ -20,6 +20,7 @@ import jakarta.persistence.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.Date;
+import java.sql.Time;
 
 /**
  * Описывает элемент из таблицы, содержащей информацию о уведомлениях.
@@ -48,6 +49,10 @@ public class NotificationEntity {
     @NotNull
     private Date date;
 
+    @Column (name = "time")
+    @NotNull
+    private Time time;
+
     @Column (name = "notification_status")
     @NotNull
     private byte notificationStatus;
@@ -56,12 +61,13 @@ public class NotificationEntity {
     @NotNull
     private String text;
 
-    public NotificationEntity(@NotNull byte notificationType, @NotNull Date date,
+    public NotificationEntity(@NotNull byte notificationType, @NotNull Date date, @NotNull Time time,
                               @NotNull byte notificationStatus, @NotNull String text) {
         this.notificationType = notificationType;
         this.date = date;
         this.notificationStatus = notificationStatus;
         this.text = text;
+        this.time = time;
     }
 
     public NotificationEntity() {
@@ -103,4 +109,11 @@ public class NotificationEntity {
         this.notificationStatus = notificationStatus;
     }
 
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(@NotNull Time time) {
+        this.time = time;
+    }
 }
