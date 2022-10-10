@@ -18,24 +18,24 @@ package ausf.software.api.store;
 
 /**
  * Содержит значения, которые будут храниться в БД, соответствующие
- * типам дз.
+ * типам уведомлений.
  *
  * @author Shcherbina Daniil
  * @since 1.0
  * @version 1.0
  */
-public enum HomeworkType {
+public enum NotificationType {
 
-    HOMEWORK            ((byte) 0, "Обычное дз"),
-    TEST                ((byte) 1, "Подготовка к кр"),
-    INDIVIDUAL_WORK     ((byte) 2, "Подготовка к см"),
-    PRESENTATION        ((byte) 3, "Доклад/презентация"),
-    SEMINAR             ((byte) 4, "Подготовка к семинару");
+    PER_DAY     ((byte) 0, "За день"),
+    PER_HOUR    ((byte) 1, "За час"),
+    PER_30      ((byte) 2, "За 30 минут"),
+    PER_15      ((byte) 3, "За 15 минут"),
+    ALL_TYPE    ((byte) -1, "Все вышепредставленные");
 
     private byte index;
     private String title;
 
-    HomeworkType(byte i, String text) {
+    NotificationType(byte i, String text) {
         index = i;
         title = text;
     }

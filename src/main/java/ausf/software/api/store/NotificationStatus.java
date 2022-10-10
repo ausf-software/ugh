@@ -18,33 +18,25 @@ package ausf.software.api.store;
 
 /**
  * Содержит значения, которые будут храниться в БД, соответствующие
- * типам дз.
+ * статусам уведомлений.
  *
  * @author Shcherbina Daniil
  * @since 1.0
  * @version 1.0
  */
-public enum HomeworkType {
+public enum NotificationStatus {
 
-    HOMEWORK            ((byte) 0, "Обычное дз"),
-    TEST                ((byte) 1, "Подготовка к кр"),
-    INDIVIDUAL_WORK     ((byte) 2, "Подготовка к см"),
-    PRESENTATION        ((byte) 3, "Доклад/презентация"),
-    SEMINAR             ((byte) 4, "Подготовка к семинару");
+    WAITING ((byte) 0),
+    DONE    ((byte) 1);
 
     private byte index;
-    private String title;
 
-    HomeworkType(byte i, String text) {
+    NotificationStatus(byte i) {
         index = i;
-        title = text;
     }
 
     public byte getValue() {
         return index;
     }
 
-    public String getTitle() {
-        return title;
-    }
 }
