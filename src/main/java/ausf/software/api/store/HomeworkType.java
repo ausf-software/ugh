@@ -18,23 +18,24 @@ package ausf.software.api.store;
 
 /**
  * Содержит значения, которые будут храниться в БД, соответствующие
- * типам пар.
+ * типам дз.
  *
  * @author Shcherbina Daniil
  * @since 1.0
  * @version 1.0
  */
-public enum DisciplineType {
+public enum HomeworkType {
 
-    LECTURE     ((byte) 0, "Лекция"),
-    PRACTICE    ((byte) 1, "Практика"),
-    SEMINAR     ((byte) 2, "Семинар"),
-    ADDITIONAL  ((byte) 3, "Дополнительный");
+    HOMEWORK            ((byte) 0, "Обычное дз"),
+    TEST                ((byte) 1, "Подготовка к кр"),
+    INDIVIDUAL_WORK     ((byte) 2, "Подготовка к см"),
+    PRESENTATION        ((byte) 3, "Доклад/презентация"),
+    SEMINAR             ((byte) 4, "Подготовка к семинару");
 
     private byte index;
     private String title;
 
-    DisciplineType(byte i, String text) {
+    HomeworkType(byte i, String text) {
         index = i;
         title = text;
     }
@@ -46,5 +47,4 @@ public enum DisciplineType {
     public String getTitle() {
         return title;
     }
-
 }

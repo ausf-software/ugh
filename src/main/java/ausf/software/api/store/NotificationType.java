@@ -18,23 +18,24 @@ package ausf.software.api.store;
 
 /**
  * Содержит значения, которые будут храниться в БД, соответствующие
- * типам пар.
+ * типам уведомлений.
  *
  * @author Shcherbina Daniil
  * @since 1.0
  * @version 1.0
  */
-public enum DisciplineType {
+public enum NotificationType {
 
-    LECTURE     ((byte) 0, "Лекция"),
-    PRACTICE    ((byte) 1, "Практика"),
-    SEMINAR     ((byte) 2, "Семинар"),
-    ADDITIONAL  ((byte) 3, "Дополнительный");
+    PER_DAY     ((byte) 0, "За день"),
+    PER_HOUR    ((byte) 1, "За час"),
+    PER_30      ((byte) 2, "За 30 минут"),
+    PER_15      ((byte) 3, "За 15 минут"),
+    ALL_TYPE    ((byte) -1, "Все вышепредставленные");
 
     private byte index;
     private String title;
 
-    DisciplineType(byte i, String text) {
+    NotificationType(byte i, String text) {
         index = i;
         title = text;
     }
@@ -46,5 +47,4 @@ public enum DisciplineType {
     public String getTitle() {
         return title;
     }
-
 }

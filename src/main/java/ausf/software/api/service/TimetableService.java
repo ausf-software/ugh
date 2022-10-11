@@ -1,6 +1,5 @@
 /*
- * Copyright © 2022 Shcherbina Daniil, ***
- *
+ * Copyright © 2022 Shcherbina Daniil and BouH
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,15 +27,18 @@ import java.util.List;
  * в таблице, содержащей данные о элементах необходимых для составления
  * таблицы расписания.
  *
+ * @see Service
+ * @see TimetableElementDAO
+ * @see TimetableElementEntity
  * @author Shcherbina Daniil
  * @since 1.0
  * @version 1.0
  */
-public class TimetableElementService implements Service <TimetableElementEntity, Integer> {
+public class TimetableService implements Service <TimetableElementEntity, Integer> {
 
     private TimetableElementDAO dao;
 
-    public TimetableElementService() {
+    public TimetableService() {
         dao = new TimetableElementDAO();
     }
 
@@ -78,13 +80,13 @@ public class TimetableElementService implements Service <TimetableElementEntity,
     }
 
     /**
-     * Создает запрос к БД на получение всех записей имеющих совпадение
+     * Создает сессию для получения всех записей имеющих совпадение
      * по заданному значению в заданном столбце, после чего возвращает
      * полученные данные.
      *
-     * @param columnName имя столбца в БД
-     * @param value значение на совпадение которого будет проверка
-     * @return список объектов удовлетворяющих данному условию
+     * @param columnName имя столбца в БД.
+     * @param value значение на совпадение которого будет проверка.
+     * @return список объектов удовлетворяющих данному условию.
      */
     private List<TimetableElementEntity> getTimetableElementsByArg(@NotNull String columnName, @NotNull Object value) {
         dao.openCurrentSession();
@@ -94,12 +96,12 @@ public class TimetableElementService implements Service <TimetableElementEntity,
     }
 
     /**
-     * Создает запрос к БД на получение всех записей имеющих совпадение
+     * Создает сессию для получения всех записей имеющих совпадение
      * по заданному значению в стобце с типом недели, после чего возвращает
      * полученные данные.
      *
-     * @param value значение на совпадение которого будет проверка
-     * @return список объектов удовлетворяющих данному условию
+     * @param value значение на совпадение которого будет проверка.
+     * @return список объектов удовлетворяющих данному условию.
      */
     public List<TimetableElementEntity> getTimetableElementsByWeekType(@NotNull int value) {
         List<TimetableElementEntity> disciplines = getTimetableElementsByArg("week_type", value);
@@ -107,15 +109,27 @@ public class TimetableElementService implements Service <TimetableElementEntity,
     }
 
     /**
-     * Создает запрос к БД на получение всех записей имеющих совпадение
+     * Создает сессию для получения всех записей имеющих совпадение
      * по заданному значению в стобце с днем недели, после чего возвращает
      * полученные данные.
      *
-     * @param value значение на совпадение которого будет проверка
-     * @return список объектов удовлетворяющих данному условию
+     * @param value значение на совпадение которого будет проверка.
+     * @return список объектов удовлетворяющих данному условию.
      */
     public List<TimetableElementEntity> getTimetableElementsByDay(@NotNull int value) {
         List<TimetableElementEntity> disciplines = getTimetableElementsByArg("day", value);
+        return disciplines;
+    }
+
+    /**
+     * Создает сессию для получения всех записей.
+     *
+     * @return список всех элементов из БД.
+     */
+    public List<TimetableElementEntity> getAllElement() {
+        dao.openCurrentSession();
+        List<TimetableElementEntity> disciplines = dao.getAllElement();
+        dao.closeCurrentSession();
         return disciplines;
     }
 

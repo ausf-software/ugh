@@ -1,5 +1,5 @@
 /*
- * Copyright © 2022 Shcherbina Daniil, ***
+ * Copyright © 2022 Shcherbina Daniil and BouH
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,8 @@ import java.util.List;
 /**
  * Реализация DAO к таблице, содержащей информацию о пунктах расписания.
  *
+ * @see DAO
+ * @see TimetableElementEntity
  * @author Shcherbina Daniil
  * @since 1.0
  * @version 1.0
@@ -56,13 +58,34 @@ public class TimetableElementDAO extends DAO <TimetableElementEntity, Integer> {
         currentSession.delete(entity);
     }
 
+    /**
+     * Создает запрос к БД на получение всех записей имеющих совпадение
+     * по заданному значению в заданном столбце, после чего возвращает
+     * полученные данные.
+     *
+     * @param columnName имя столбца в БД.
+     * @param value значение на совпадение которого будет проверка.
+     * @return список объектов удовлетворяющих данному условию.
+     */
     public List<TimetableElementEntity> getTimetableElementByArg(@NotNull String columnName, @NotNull Object value) {
         CriteriaBuilder criteriaBuilder = currentSession.getCriteriaBuilder();
         CriteriaQuery<TimetableElementEntity> criteria = criteriaBuilder.createQuery(TimetableElementEntity.class);
         Root<TimetableElementEntity> root = criteria.from(TimetableElementEntity.class);
         criteria.select(root).where(criteriaBuilder.equal(root.get(columnName), value));
-        List<TimetableElementEntity> disciplines = currentSession.createQuery(criteria).getResultList();
-        return disciplines;
+        return currentSession.createQuery(criteria).getResultList();
+    }
+
+    /**
+     * Создает запрос к БД на получение всех записей.
+     *
+     * @return список всех элементов из БД.
+     */
+    public List<TimetableElementEntity> getAllElement() {
+        CriteriaBuilder criteriaBuilder = currentSession.getCriteriaBuilder();
+        CriteriaQuery<TimetableElementEntity> criteria = criteriaBuilder.createQuery(TimetableElementEntity.class);
+        Root<TimetableElementEntity> root = criteria.from(TimetableElementEntity.class);
+        criteria.select(root);
+        return currentSession.createQuery(criteria).getResultList();
     }
 
 }

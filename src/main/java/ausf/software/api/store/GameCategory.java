@@ -18,25 +18,34 @@ package ausf.software.api.store;
 
 /**
  * Содержит значения, которые будут храниться в БД, соответствующие
- * типам пар.
+ * категориям игр.
  *
  * @author Shcherbina Daniil
  * @since 1.0
  * @version 1.0
  */
-public enum DisciplineType {
+public enum GameCategory {
 
-    LECTURE     ((byte) 0, "Лекция"),
-    PRACTICE    ((byte) 1, "Практика"),
-    SEMINAR     ((byte) 2, "Семинар"),
-    ADDITIONAL  ((byte) 3, "Дополнительный");
+    ACTION              ((byte) 0, "Action"),
+    ACTION_ADVENTURE    ((byte) 1, "Action-adventure"),
+    ADVENTURE           ((byte) 2, "Adventure"),
+    FIGHTING            ((byte) 3, "Fighting"),
+    PUZZLE              ((byte) 4, "Puzzle"),
+    PLATFORM            ((byte) 5, "Platform"),
+    RACING              ((byte) 6, "Racing"),
+    RPG                 ((byte) 7, "RPG"),
+    SPORTS              ((byte) 8, "Sports"),
+    STRATEGY            ((byte) 9, "Strategy"),
+    SURViVAL_HORROR     ((byte) 10, "Survival horror"),
+    SANDBOX             ((byte) 11, "Sandbox"),
+    SIMULATOR           ((byte) 12, "Simulator");
 
     private byte index;
     private String title;
 
-    DisciplineType(byte i, String text) {
+    GameCategory(byte i, String title) {
         index = i;
-        title = text;
+        this.title = title;
     }
 
     public byte getValue() {

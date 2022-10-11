@@ -1,5 +1,5 @@
 /*
- * Copyright © 2022 Shcherbina Daniil, ***
+ * Copyright © 2022 Shcherbina Daniil and BouH
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,16 @@ package ausf.software.api.store.entity;
 import jakarta.persistence.*;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Описывает элемент из таблицы, содержащей информацию о элементах расписания.
+ *
+ * @see DisciplineEntity
+ * @see ausf.software.api.store.WeekType
+ * @see ausf.software.api.store.DayValue
+ * @author Shcherbina Daniil
+ * @since 1.0
+ * @version 1.0
+ */
 @Entity
 @Table(name = "timetable_element")
 public class TimetableElementEntity {
@@ -41,16 +51,17 @@ public class TimetableElementEntity {
     @NotNull
     private byte number;
 
-    @Column (name = "discipline_id")
     @NotNull
-    private int disciplineId;
+    @ManyToOne
+    @JoinColumn (name="discipline_id")
+    private DisciplineEntity discipline;
 
     public TimetableElementEntity(@NotNull byte day, @NotNull byte weekType,
-                                  @NotNull byte number, @NotNull int disciplineId) {
+                                  @NotNull byte number, @NotNull DisciplineEntity discipline) {
         this.day = day;
         this.weekType = weekType;
         this.number = number;
-        this.disciplineId = disciplineId;
+        this.discipline = discipline;
     }
 
     public TimetableElementEntity() {
@@ -84,12 +95,12 @@ public class TimetableElementEntity {
         this.number = number;
     }
 
-    public int getDisciplineId() {
-        return disciplineId;
+    public DisciplineEntity getDiscipline() {
+        return discipline;
     }
 
-    public void setDisciplineId(@NotNull int disciplineId) {
-        this.disciplineId = disciplineId;
+    public void setDiscipline(@NotNull DisciplineEntity discipline) {
+        this.discipline = discipline;
     }
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright © 2022 Shcherbina Daniil, ***
+ * Copyright © 2022 Shcherbina Daniil and BouH
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,14 @@ package ausf.software.api.store.entity;
 import jakarta.persistence.*;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Описывает элемент из таблицы, содержащей информацию о изучаемых дисциплинах.
+ *
+ * @see ausf.software.api.store.DisciplineType
+ * @author Shcherbina Daniil
+ * @since 1.0
+ * @version 1.0
+ */
 @Entity
 @Table(name = "discipline")
 public class DisciplineEntity {

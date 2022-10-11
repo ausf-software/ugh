@@ -1,5 +1,5 @@
 /*
- * Copyright © 2022 Shcherbina Daniil, ***
+ * Copyright © 2022 Shcherbina Daniil and BouH
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,9 @@ import org.jetbrains.annotations.NotNull;
  * Сервис предоставдляющий интерфейс для взаимодействия с данными
  * в таблице, содержащей данные о дисциплинах.
  *
+ * @see Service
+ * @see DisciplineDAO
+ * @see DisciplineEntity
  * @author Shcherbina Daniil
  * @since 1.0
  * @version 1.0

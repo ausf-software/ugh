@@ -18,25 +18,24 @@ package ausf.software.api.store;
 
 /**
  * Содержит значения, которые будут храниться в БД, соответствующие
- * типам пар.
+ * категориям книг.
  *
  * @author Shcherbina Daniil
  * @since 1.0
  * @version 1.0
  */
-public enum DisciplineType {
+public enum BookCategory {
 
-    LECTURE     ((byte) 0, "Лекция"),
-    PRACTICE    ((byte) 1, "Практика"),
-    SEMINAR     ((byte) 2, "Семинар"),
-    ADDITIONAL  ((byte) 3, "Дополнительный");
+    TEXT_BOOK               ((byte) 0, "Учебник"),
+    SPECIALIZED_LITERATURE  ((byte) 1, "Специализированная литература"),
+    ARTISTIC_LITERATURE     ((byte) 2, "Художественная литература");
 
     private byte index;
     private String title;
 
-    DisciplineType(byte i, String text) {
+    BookCategory(byte i, String title) {
         index = i;
-        title = text;
+        this.title = title;
     }
 
     public byte getValue() {

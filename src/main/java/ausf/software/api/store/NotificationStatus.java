@@ -14,28 +14,29 @@
  * limitations under the License.
  */
 
-package ausf.software.bot.server;
-
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import org.jetbrains.annotations.NotNull;
+package ausf.software.api.store;
 
 /**
- * Слушатель для обработки команд поступающих только с
- * сервера Discord.
+ * Содержит значения, которые будут храниться в БД, соответствующие
+ * статусам уведомлений.
  *
  * @author Shcherbina Daniil
- * @author ***
  * @since 1.0
  * @version 1.0
  */
-public class ServerCommandListener extends ListenerAdapter {
+public enum NotificationStatus {
 
-    @Override
-    public void onMessageReceived(@NotNull MessageReceivedEvent event) {
-        if (!event.getAuthor().hasPrivateChannel()) {
-            //System.out.println("server message");
-        }
+    WAITING ((byte) 0),
+    DONE    ((byte) 1);
+
+    private byte index;
+
+    NotificationStatus(byte i) {
+        index = i;
+    }
+
+    public byte getValue() {
+        return index;
     }
 
 }
