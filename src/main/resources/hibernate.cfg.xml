@@ -16,8 +16,6 @@
         <mapping class="ausf.software.api.store.entity.DisciplineEntity"/>
         <mapping class="ausf.software.api.store.entity.TimetableElementEntity"/>
         <mapping class="ausf.software.api.store.entity.NotificationEntity"/>
-        <mapping class="ausf.software.api.store.entity.DisciplineEntity"/>
-        <mapping class="ausf.software.api.store.entity.TimetableElementEntity"/>
         <mapping class="ausf.software.api.store.entity.HomeworkEntity"/>
         <mapping class="ausf.software.api.store.entity.GameLibraryElementEntity"/>
         <mapping class="ausf.software.api.store.entity.BookLibraryElementEntity"/>
