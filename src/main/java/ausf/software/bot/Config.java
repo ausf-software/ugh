@@ -24,7 +24,11 @@ package ausf.software.bot;
  */
 public class Config {
 
-    public static final char commandTrigger = '*';
-    public static final char commandArgSplitter = ':';
+    public static final char COMMAND_TRIGGER = '*';
+    public static final char COMMAND_ARG_SPLITTER = ' ';
+
+    public static final String DELETE_MESSAGE_TEXT = "Данное сообщение будет удалено через: ";
+
+    public static final String NOTIFICATION_CREATE_SUCCESSFUL_TEXT = "Уведомление было успешно создано. ";
 
 }
