@@ -26,6 +26,7 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import ru.BouH.init.EventHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +62,7 @@ public class App  {
         if (guild != null) {
             guild.upsertCommand("notification", "Создает уведомление").queue();
         }
-
+        new EventHandler(jda);
     }
 
 }

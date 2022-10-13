@@ -13,23 +13,27 @@ public class EventHandler extends ListenerAdapter {
     private final RegisterEvents registerEvents = new RegisterEvents();
 
     public EventHandler(JDA jda) {
-        this.registerEvents.registerEventClass("ru.BouH.Commands");
+        this.registerEvents.registerEventClass("ru.BouH.events.Commands");
         jda.addEventListener(this);
     }
 
     public void onMessageReceived(MessageReceivedEvent event) {
-        String message = event.getMessage().toString().toLowerCase();
-        if (message.startsWith(String.valueOf(Config.commandTrigger))) {
-            String formattedMsg = message.substring(1);
-            String[] command = formattedMsg.split(" ");
-            if (this.registerEvents.getMethodMap().containsKey(command[0])) {
-                Method method = this.registerEvents.getMethodMap().get(command[0]);
-                try {
-                    if (!((boolean) method.invoke(method.getDeclaringClass().newInstance(), Arrays.copyOfRange(command, 1, command.length), event))) {
-                        event.getChannel().sendMessage("/" + command[0] + " " + method.getAnnotation(EventCommand.class).usage()).submit();
+        if (!event.getAuthor().isBot()) {
+            String message = event.getMessage().getContentDisplay().toLowerCase();
+            if (message.startsWith(String.valueOf(Config.commandTrigger))) {
+                String formattedMsg = message.substring(1);
+                String[] command = formattedMsg.split(" ");
+                if (this.registerEvents.getMethodMap().containsKey(command[0])) {
+                    Method method = this.registerEvents.getMethodMap().get(command[0]);
+                    try {
+                        if (!((boolean) method.invoke(method.getDeclaringClass().newInstance(), Arrays.copyOfRange(command, 1, command.length), event))) {
+                            event.getChannel().sendMessage(Config.commandTrigger + command[0] + " " + method.getAnnotation(EventCommand.class).usage()).submit();
+                        }
+                    } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+                        throw new RuntimeException(e);
                     }
-                } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-                    throw new RuntimeException(e);
+                } else {
+                    event.getChannel().sendMessage("Вывести список команд: *help").submit();
                 }
             }
         }
