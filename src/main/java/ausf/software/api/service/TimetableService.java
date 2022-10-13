@@ -21,6 +21,7 @@ import ausf.software.api.store.entity.TimetableElementEntity;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Сервис предоставдляющий интерфейс для взаимодействия с данными
@@ -88,7 +89,7 @@ public class TimetableService implements Service <TimetableElementEntity, Intege
      * @param value значение на совпадение которого будет проверка.
      * @return список объектов удовлетворяющих данному условию.
      */
-    private List<TimetableElementEntity> getTimetableElementsByArg(@NotNull String columnName, @NotNull Object value) {
+    private List<TimetableElementEntity> getTimetableElementsByArg(@NotNull String columnName, @NotNull byte value) {
         dao.openCurrentSession();
         List<TimetableElementEntity> disciplines = dao.getTimetableElementByArg(columnName, value);
         dao.closeCurrentSession();
@@ -103,8 +104,12 @@ public class TimetableService implements Service <TimetableElementEntity, Intege
      * @param value значение на совпадение которого будет проверка.
      * @return список объектов удовлетворяющих данному условию.
      */
-    public List<TimetableElementEntity> getTimetableElementsByWeekType(@NotNull int value) {
-        List<TimetableElementEntity> disciplines = getTimetableElementsByArg("week_type", value);
+    public List<TimetableElementEntity> getTimetableElementsByWeekType(@NotNull byte value) {
+        //TODO: уничтожить баг
+        // (временная заплатка)
+        List<TimetableElementEntity> disciplines = getAllElement().stream()
+                                                                    .filter(entity -> entity.getWeekType() == value)
+                                                                    .collect(Collectors.toList());
         return disciplines;
     }
 
@@ -116,7 +121,7 @@ public class TimetableService implements Service <TimetableElementEntity, Intege
      * @param value значение на совпадение которого будет проверка.
      * @return список объектов удовлетворяющих данному условию.
      */
-    public List<TimetableElementEntity> getTimetableElementsByDay(@NotNull int value) {
+    public List<TimetableElementEntity> getTimetableElementsByDay(@NotNull byte value) {
         List<TimetableElementEntity> disciplines = getTimetableElementsByArg("day", value);
         return disciplines;
     }
