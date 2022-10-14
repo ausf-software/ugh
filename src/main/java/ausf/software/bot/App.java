@@ -59,7 +59,8 @@ public class App  {
         Guild guild = jda.getGuildById("1026101822466838628");
 
         if (guild != null) {
-            guild.upsertCommand("notification", "Создает уведомление").queue();
+            guild.upsertCommand("notification", "Создает уведомление, которое будет отправлено всем в ЛС ")
+                    .queue();
         }
 
     }

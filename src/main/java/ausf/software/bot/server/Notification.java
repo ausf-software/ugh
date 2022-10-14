@@ -19,6 +19,9 @@ package ausf.software.bot.server;
 import ausf.software.api.service.NotificationService;
 import ausf.software.api.store.NotificationType;
 import ausf.software.api.store.entity.NotificationEntity;
+import ausf.software.bot.Config;
+import ausf.software.bot.DeleteMessageTimer;
+import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.SelectMenuInteractionEvent;
@@ -115,12 +118,10 @@ public class Notification extends ListenerAdapter {
         String text = event.getValue("text").getAsString();
         byte type = Byte.parseByte(event.getModalId().replace("notification.", ""));
 
+        event.deferReply().queue();
+
         if (time.length == 3 && date.length == 3) {
             NotificationService service = new NotificationService();
-            event.reply("Уведомление было успешно создано")
-                    .setEphemeral(true)
-                    .timeout(5, TimeUnit.SECONDS)
-                    .queue();
 
             service.add(new NotificationEntity(
                     type,
@@ -129,6 +130,9 @@ public class Notification extends ListenerAdapter {
                     (byte) 0,
                     text
             ));
+
+            DeleteMessageTimer.createTimer(event.getHook(), Config.NOTIFICATION_CREATE_SUCCESSFUL_TEXT);
+
         } else {
             event.reply("Ошибка! Были введены некорректные значения.").setEphemeral(true).queue();
         }
