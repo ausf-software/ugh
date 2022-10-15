@@ -1,4 +1,4 @@
-package ru.BouH.events;
+package ausf.software.BouH.events;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,5 +1,5 @@
-package ru.BouH.init;
-import ru.BouH.events.EventCommand;
+package ausf.software.BouH.init;
+import ausf.software.BouH.events.EventCommand;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;

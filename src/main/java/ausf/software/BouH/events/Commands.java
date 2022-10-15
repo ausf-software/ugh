@@ -1,4 +1,4 @@
-package ru.BouH.events;
+package ausf.software.BouH.events;
 
 import ausf.software.api.service.TimetableService;
 import ausf.software.api.store.DayValue;

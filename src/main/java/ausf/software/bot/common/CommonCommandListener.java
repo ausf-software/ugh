@@ -35,15 +35,15 @@ public class CommonCommandListener extends ListenerAdapter {
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         if (!event.getAuthor().isBot()) {
             String message = event.getMessage().getContentDisplay();
-            if (message.toCharArray()[0] == Config.COMMAND_TRIGGER) {
+            if (message.toCharArray()[0] == Config.commandTrigger) {
                 checkCommand(event, message);
             }
         }
     }
 
     private void checkCommand(@NotNull MessageReceivedEvent event, @NotNull String message){
-        String[] arg = message.split(String.valueOf(Config.COMMAND_ARG_SPLITTER));
-        if (arg[0].equals(Config.COMMAND_TRIGGER + "расписание")) {
+        String[] arg = message.split(String.valueOf(Config.commandArgSplitter));
+        if (arg[0].equals(Config.commandTrigger + "расписание")) {
             event.getChannel().sendMessage("ну допустим").submit();
         }
     }

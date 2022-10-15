@@ -1,10 +1,10 @@
-package ru.BouH.init;
+package ausf.software.BouH.init;
 
 import ausf.software.bot.Config;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import ru.BouH.events.EventCommand;
+import ausf.software.BouH.events.EventCommand;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -13,7 +13,7 @@ public class EventHandler extends ListenerAdapter {
     private final RegisterEvents registerEvents = new RegisterEvents();
 
     public EventHandler(JDA jda) {
-        this.registerEvents.registerEventClass("ru.BouH.events.Commands");
+        this.registerEvents.registerEventClass("ausf.software.BouH.events.Commands");
         jda.addEventListener(this);
     }
 

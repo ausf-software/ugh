@@ -16,7 +16,6 @@
 
 package ausf.software.bot;
 
-import ausf.software.api.store.dao.NotificationDAO;
 import ausf.software.bot.channel.SettingsCommandListener;
 import ausf.software.bot.common.CommonCommandListener;
 import ausf.software.bot.personal.PrivateMessageCommandListener;
@@ -28,7 +27,7 @@ import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.requests.GatewayIntent;
-import ru.BouH.init.EventHandler;
+import ausf.software.BouH.init.EventHandler;
 
 import java.util.ArrayList;
 import java.util.List;
