@@ -25,7 +25,6 @@ import org.jetbrains.annotations.NotNull;
  * Слушатель для обработки команд из любого места.
  *
  * @author Shcherbina Daniil
- * @author ***
  * @since 1.0
  * @version 1.0
  */
@@ -35,15 +34,15 @@ public class CommonCommandListener extends ListenerAdapter {
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         if (!event.getAuthor().isBot()) {
             String message = event.getMessage().getContentDisplay();
-            if (message.toCharArray()[0] == Config.commandTrigger) {
+            if (message.toCharArray()[0] == Config.COMMAND_TRIGGER) {
                 checkCommand(event, message);
             }
         }
     }
 
     private void checkCommand(@NotNull MessageReceivedEvent event, @NotNull String message){
-        String[] arg = message.split(String.valueOf(Config.commandArgSplitter));
-        if (arg[0].equals(Config.commandTrigger + "расписание")) {
+        String[] arg = message.split(String.valueOf(Config.COMMAND_ARG_SPLITTER));
+        if (arg[0].equals(Config.COMMAND_TRIGGER + "расписание")) {
             event.getChannel().sendMessage("ну допустим").submit();
         }
     }

@@ -16,6 +16,8 @@
 
 package ausf.software.bot;
 
+import net.dv8tion.jda.api.entities.Role;
+
 /**
  *
  *
@@ -29,6 +31,9 @@ public class Config {
 
     public static final String DELETE_MESSAGE_TEXT = "Данное сообщение будет удалено через: ";
 
-    public static final String NOTIFICATION_CREATE_SUCCESSFUL_TEXT = "Уведомление было успешно создано. ";
+    public static final String NOTIFICATION_CREATE_SUCCESSFUL_TEXT = "Уведомление было успешно создано.";
+    public static final String NOTIFICATION_ADDRESSES_CREATE_SUCCESSFUL_TEXT = "Роль для получения уведомлений успешно установлена.";
+
+    public static Role NOTIFICATION_ADDRESSES;
 
 }

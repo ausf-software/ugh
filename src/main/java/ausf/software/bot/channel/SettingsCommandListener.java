@@ -16,7 +16,11 @@
 
 package ausf.software.bot.channel;
 
+import ausf.software.bot.Config;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Слушатель для обработки команд служащих для настройки
@@ -24,9 +28,23 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
  * категории и текстового канала.
  *
  * @author Shcherbina Daniil
- * @author ***
  * @since 1.0
  * @version 1.0
  */
 public class SettingsCommandListener extends ListenerAdapter {
+
+    @Override
+    public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
+        if (event.getGuild().getMemberById(event.getUser().getId()).hasPermission(Permission.ADMINISTRATOR)) {
+            checkCommands(event);
+        }
+    }
+
+    public void checkCommands(SlashCommandInteractionEvent event) {
+        if(event.getName().equals("set-notification-addresses")) {
+            Config.NOTIFICATION_ADDRESSES = event.getOption("role").getAsRole();
+            event.reply(Config.NOTIFICATION_ADDRESSES_CREATE_SUCCESSFUL_TEXT).setEphemeral(true).queue();
+        }
+    }
+
 }

@@ -26,6 +26,7 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import ausf.software.BouH.init.EventHandler;
 
@@ -63,8 +64,12 @@ public class App  {
         Guild guild = jda.getGuildById("1026101822466838628");
 
         if (guild != null) {
-            guild.upsertCommand("notification",
-                    "Создает массовое уведомление с рассылкой напоминания в ЛС").queue();
+            guild.upsertCommand("notification", "Создает уведомление, которое будет отправлено всем в ЛС")
+                    .queue();
+
+            guild.upsertCommand("set-notification-addresses", "Устанавливает роль, которая будет получать уведомления")
+                    .addOption(OptionType.ROLE, "role", "роль, которая будет получать уведомления", true)
+                    .queue();
         }
         new EventHandler(jda);
     }
