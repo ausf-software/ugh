@@ -23,9 +23,12 @@ import ausf.software.bot.server.Notification;
 import ausf.software.bot.server.ServerCommandListener;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.OnlineStatus;
+import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import ausf.software.BouH.init.EventHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +58,8 @@ public class App  {
         jda.addEventListener(new Notification());
 
         jda.awaitReady();
+        jda.getPresence().setStatus(OnlineStatus.IDLE);
+        jda.getPresence().setActivity(Activity.watching("за происходящим"));
 
         Guild guild = jda.getGuildById("1026101822466838628");
 
@@ -66,7 +71,7 @@ public class App  {
                     .addOption(OptionType.ROLE, "role", "роль, которая будет получать уведомления", true)
                     .queue();
         }
-
+        new EventHandler(jda);
     }
 
 }

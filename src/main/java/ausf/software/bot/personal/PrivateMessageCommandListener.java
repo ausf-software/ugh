@@ -32,7 +32,7 @@ public class PrivateMessageCommandListener extends ListenerAdapter {
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         if (event.getAuthor().hasPrivateChannel()) {
-            System.out.println("private message");
+            //System.out.println("private message");
         }
     }
 
