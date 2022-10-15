@@ -16,7 +16,6 @@
 
 package ausf.software.bot;
 
-import ausf.software.api.store.dao.NotificationDAO;
 import ausf.software.bot.channel.SettingsCommandListener;
 import ausf.software.bot.common.CommonCommandListener;
 import ausf.software.bot.personal.PrivateMessageCommandListener;
@@ -25,6 +24,7 @@ import ausf.software.bot.server.ServerCommandListener;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
 import java.util.ArrayList;
@@ -59,7 +59,11 @@ public class App  {
         Guild guild = jda.getGuildById("1026101822466838628");
 
         if (guild != null) {
-            guild.upsertCommand("notification", "Создает уведомление, которое будет отправлено всем в ЛС ")
+            guild.upsertCommand("notification", "Создает уведомление, которое будет отправлено всем в ЛС")
+                    .queue();
+
+            guild.upsertCommand("set-notification-addresses", "Устанавливает роль, которая будет получать уведомления")
+                    .addOption(OptionType.ROLE, "role", "роль, которая будет получать уведомления", true)
                     .queue();
         }
 

@@ -25,7 +25,6 @@ import org.jetbrains.annotations.NotNull;
  * Слушатель для обработки команд из любого места.
  *
  * @author Shcherbina Daniil
- * @author ***
  * @since 1.0
  * @version 1.0
  */

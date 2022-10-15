@@ -20,8 +20,7 @@ import ausf.software.api.service.NotificationService;
 import ausf.software.api.store.NotificationType;
 import ausf.software.api.store.entity.NotificationEntity;
 import ausf.software.bot.Config;
-import ausf.software.bot.DeleteMessageTimer;
-import net.dv8tion.jda.api.entities.Message;
+import ausf.software.util.DeleteMessageTimer;
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.SelectMenuInteractionEvent;
@@ -35,7 +34,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Слушатель для обработки уведомлений.

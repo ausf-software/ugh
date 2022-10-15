@@ -84,7 +84,7 @@ public class NotificationService implements Service <NotificationEntity, Integer
      * @param notificationStatus статус уведомлений.
      * @return список подходящих условию выборки по категории элементов.
      */
-    public List<NotificationEntity> getNotificationByCategory(@NotNull byte notificationStatus) {
+    public List<NotificationEntity> getNotificationByStatus(@NotNull byte notificationStatus) {
         dao.openCurrentSession();
         List<NotificationEntity> elements = dao.getNotificationByStatus(notificationStatus);
         dao.closeCurrentSession();
