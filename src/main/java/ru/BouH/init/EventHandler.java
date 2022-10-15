@@ -20,14 +20,14 @@ public class EventHandler extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event) {
         if (!event.getAuthor().isBot()) {
             String message = event.getMessage().getContentDisplay().toLowerCase();
-            if (message.startsWith(String.valueOf(Config.commandTrigger))) {
+            if (message.startsWith(String.valueOf(Config.COMMAND_TRIGGER))) {
                 String formattedMsg = message.substring(1);
-                String[] command = formattedMsg.split(" ");
+                String[] command = formattedMsg.split(String.valueOf(Config.COMMAND_ARG_SPLITTER));
                 if (this.registerEvents.getMethodMap().containsKey(command[0])) {
                     Method method = this.registerEvents.getMethodMap().get(command[0]);
                     try {
                         if (!((boolean) method.invoke(method.getDeclaringClass().newInstance(), Arrays.copyOfRange(command, 1, command.length), event))) {
-                            event.getChannel().sendMessage(Config.commandTrigger + command[0] + " " + method.getAnnotation(EventCommand.class).usage()).submit();
+                            event.getChannel().sendMessage(Config.COMMAND_TRIGGER + command[0] + " " + method.getAnnotation(EventCommand.class).usage()).submit();
                         }
                     } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
                         throw new RuntimeException(e);
